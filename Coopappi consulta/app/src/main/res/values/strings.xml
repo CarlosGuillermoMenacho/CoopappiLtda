@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Coopappi Ltda</string>
+    <string name="c_digo_fijo">Código Fijo</string>
+    <string name="cfijo">Código Fijo: </string>
+    <string name="string1">Ingrese su Código Fijo</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="historial">Facturas</string>
+    <string name="iconocoopappi">IconoCoopappi</string>
+    <string name="atras">Atras</string>
+    <string name="consultar">CONSULTAR</string>
+    <string name="volver">Volver</string>
+    <string name="icono_de_aplicacion">Icono de aplicacion</string>
+    <string name="consultas">CONSULTAS</string>
+    <string name="total_facturas_impagas">Total Facturas Impagas: </string>
+    <string name="fecha_de_corte">Fecha de Corte: </string>
+    <string name="total_monto">Total monto adeudado (bs.): </string>
+    <string name="socio">Nombre:</string>
+    <string name="fecha">Fecha</string>
+    <string name="consumo">Consumo</string>
+    <string name="monto">Monto</string>
+    <string name="fecha_de_pago">Fecha de Pago</string>
+    <string name="cod_ubicaci_n">Cod. Ubicación: </string>
+    <string name="datos_del_socio">Datos del Socio</string>
+    <string name="title_activity_requisitos">requisitos</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="lorem_ipsum">lorem_ipsum</string>
+</resources>

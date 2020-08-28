@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemafiliacion"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/ivAfil"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/casita_round"
+            android:contentDescription="@string/el_item_del_socio" />
+
+        <TextView
+            android:id="@+id/tvafilNombre"
+            android:gravity="center_vertical"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:textColor="#03033A"
+            android:layout_marginStart="20dp"
+            android:textSize="@dimen/text16sp"
+            android:text="@string/nombre" />
+
+        <TextView
+            android:id="@+id/tvSocio"
+            android:layout_width="171dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:textSize="@dimen/text16sp"
+            android:textColor="#03033A"
+            android:text="@string/socio" />
+        <TextView
+            android:id="@+id/tvafilcodigo"
+            android:layout_width="wrap_content"
+            android:text="@string/c_digo"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/text16sp"
+            android:textColor="#03033A"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#03033A"/>
+
+</LinearLayout>

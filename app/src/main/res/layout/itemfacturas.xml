@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+
+    tools:ignore="RtlSymmetry">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+        <TextView
+            android:id="@+id/mesfactura"
+            android:layout_width="70dp"
+            android:textColor="@color/azul"
+            android:layout_height="wrap_content"
+            android:text="@string/_20020_03"/>
+        <TextView
+            android:id="@+id/consumofactura"
+            android:layout_width="70dp"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:layout_height="wrap_content"
+            android:text="@string/_100"/>
+        <TextView
+            android:id="@+id/montofactura"
+            android:layout_width="110dp"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:layout_height="wrap_content"
+            android:text="@string/_150_00bs"/>
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/estadofactura"
+            android:textColor="@color/azul"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/impaga"/>
+    </LinearLayout>
+
+</LinearLayout>
