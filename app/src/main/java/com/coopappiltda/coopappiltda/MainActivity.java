@@ -2,6 +2,7 @@ package com.coopappiltda.coopappiltda;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,13 +15,13 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.coopappiltda.clases.AdminSQLiteOpenHelper;
 import com.coopappiltda.clases.Constants;
 import com.coopappiltda.clases.MyAdapterListView;
 import com.coopappiltda.clases.MySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        obtenerFecha();
         enlazarVariables();
 
         cargarListView();
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void obtenerFecha() {
+        AdminSQLiteOpenHelper adm = new AdminSQLiteOpenHelper(MainActivity.this,"dbReader",null,1);
+        Cursor cursor = adm.getfecha();
+        if (cursor.moveToFirst()){
+            Constants.fecha = cursor.getString(0);
+        }
+    }
+
     //Cuando se selecciona un item de la ListView
     private void itemSelected(int position) {
         switch (position){
@@ -66,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray jsonObject = new JSONArray(response);
                             Intent intent = new Intent(MainActivity.this,MapsActivity.class);
                             intent.putExtra("respuesta",response);
+                            intent.putExtra("vista","pc");
                             startActivity(intent);
                             overridePendingTransition(R.anim.left_in,R.anim.left_out);
                         } catch (JSONException e) {
@@ -105,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         //Agregando las opciones al array para pasarlo a la ListView
         ArrayList<String> names = new ArrayList<>();
         ArrayList<Integer> images = new ArrayList<>();
-        names.add("Consulta de Facturas");
+        names.add("Afiliación y\nConsulta de Facturas");
         names.add("Puntos de Pago");
         names.add("Requisitos");
         names.add("Consumo");

@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@drawable/fondo"
-    tools:context="com.coopappiltda.coopappiltda.Notificaciones">
-
+    tools:context="com.coopappiltda.coopappiltda.MantenimientoPreventivo">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
-
         <LinearLayout
-            android:id="@+id/ll1"
+            android:id="@+id/linearLayout18"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_marginStart="4dp"
             android:gravity="center_vertical"
-            tools:ignore="UseCompoundDrawables">
+            tools:ignore="MissingConstraints,UseCompoundDrawables">
 
             <ImageView
-                android:id="@+id/ivVolverNoti"
+                android:id="@+id/ivVolverlistNotificaciones"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/back"
-                android:contentDescription="@string/notificaciones" />
+                android:contentDescription="@string/notificaciones"
+                android:src="@drawable/back"/>
 
             <TextView
+                android:id="@+id/tvmantpreven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:text="@string/notificaciones"
-                android:textColor="#03033A"
+                android:layout_marginStart="10dp"
+                android:text="@string/facturas_pagadas"
+                android:textColor="@color/azul"
                 android:textSize="@dimen/size24sp" />
-
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv24"
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_below="@id/ll1"
-            android:background="@color/azul" />
+    <TextView
+        android:id="@+id/tvju"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/linearLayout18"
+        android:background="@color/azul"  />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv24"
+            android:layout_below="@id/tvju"
             android:layout_marginTop="5dp">
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvnotificaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/lvNotific"/>
-
+                android:padding="5dp"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="4dp" />
         </LinearLayout>
 
+
     </RelativeLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

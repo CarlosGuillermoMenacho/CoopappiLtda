@@ -69,7 +69,7 @@ public class CortexDeuda extends AppCompatActivity {
     }
 
     public ArrayList<Work_Afiliado> obtenDatos(){
-        Cursor datos=dblectura.getCargaCortexDeuda();
+        Cursor datos=dblectura.getCargaCortexDeuda(id3);
         ArrayList<Work_Afiliado> usr = new ArrayList<>();
         int u1;
         String u2;

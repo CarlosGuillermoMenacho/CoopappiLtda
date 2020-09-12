@@ -24,7 +24,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL("create table afiliacion(id_socio int,nombre varchar ,alias varchar)");
         db.execSQL("create table aviso_de_cobro(id_factura int,id_socio int,cobro varchar ,mto_total float,f_emision date)");
         db.execSQL("create table cortexdeuda(id_socio int,id_corte int ,fecha date)");
-
+        db.execSQL("create table notificaciones(cod_notif,socio int,tipo int ,mensaje varchar)");
 
         db.execSQL("create table genlect(id_genfact int,id_socio int, cod_socio int, lectant int,lectact int"+
                 ",consumo int,id_mediest int,media_ant int,cobro varchar"+
@@ -192,6 +192,15 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public Cursor getCargaAfiliados() {
         return getReadableDatabase().rawQuery("select * FROM afiliacion ;", null);
     }
+    public Cursor get_Notificacion(String codigo,String tipo, String user){
+        return getReadableDatabase().rawQuery("select * from notificaciones where cod_notif="+codigo+" and socio="+user+" and tipo="+tipo ,null);
+    }
+    public void saveNotificacion(String codigo,String tipo,String user,String mensaje){
+        getWritableDatabase().execSQL("insert into notificaciones values("+codigo+","+user+","+tipo+" ,'"+mensaje+"')");
+    }
+    public Cursor getNotificaciones(String user,String tipo){
+        return getReadableDatabase().rawQuery("select * from notificaciones where socio="+user+" and tipo="+tipo+" order by cod_notif desc",null);
+    }
     public Cursor getCarga_aviso_de_cobro() {
         return getReadableDatabase().rawQuery("select * FROM aviso_de_cobro ;", null);
     }
@@ -200,11 +209,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         return getReadableDatabase().rawQuery("select * from paragene ;", null);
     }
 
-    public Cursor ObtenDatosOrdefact() {
-        return getReadableDatabase().rawQuery("select * from ordefact ;", null);
-    }
-    public Cursor getCargaCortexDeuda() {
-        return getReadableDatabase().rawQuery("select * FROM cortexdeuda ;", null);
+    public Cursor getCargaCortexDeuda(String usr) {
+        return getReadableDatabase().rawQuery("select * FROM cortexdeuda where id_socio= "+usr+";", null);
     }
     public Cursor ObtenIpc() {
         return getReadableDatabase().rawQuery("select * from ipc ;", null);
@@ -239,6 +245,9 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void grabaAviso(int av1,String av2,float av3){
         getReadableDatabase().execSQL("INSERT INTO aviso VALUES ("+av1+",'"+av2+"',"+av3+");");
         //getReadableDatabase().execSQL("INSERT INTO aviso VALUES (10,'Prueba 10',1.00);");
+    }
+    public Cursor getfecha(){
+        return getReadableDatabase().rawQuery("select * from fecha",null);
     }
     public void borraAviso(){
         getReadableDatabase().execSQL("DELETE FROM aviso;");

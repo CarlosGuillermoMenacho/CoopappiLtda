@@ -73,4 +73,11 @@
     <string name="avisos_de_cobranza">AVISOS DE COBRANZA</string>
     <string name="corte_por_deudas_afiliados">Corte por deudas - Afiliados</string>
     <string name="lista_de_cortes">Lista de cortes</string>
+    <string name="mantenimiento_lista_de_nafiliados">Mantenimiento Preventivo\nLista de Afiliados</string>
+    <string name="relaciones_p_blicas_n_lista_de_afiliados">Relaciones Públicas\n Lista de Afiliados</string>
+    <string name="nueva_conexi_n_nlista_de_afiliados">Nueva Conexión\nLista de Afiliados</string>
+    <string name="servicio_t_cnico_nlista_de_afiliados">Servicio Técnico\nLista de Afiliados</string>
+    <string name="asistencia_social_cooperativa_n_lista_de_afiliados">Asistencia Social Cooperativa\n Lista de Afiliados</string>
+    <string name="unidades_de_emergencia_nlista_de_afiliados">Unidades de Emergencia\nLista de Afiliados</string>
+    <string name="lista_de_unidades_de_emergencia">Lista de Unidades de Emergencia</string>
 </resources>

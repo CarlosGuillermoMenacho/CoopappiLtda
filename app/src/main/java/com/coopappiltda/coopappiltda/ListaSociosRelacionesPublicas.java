@@ -1,5 +1,7 @@
 package com.coopappiltda.coopappiltda;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,8 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -32,24 +32,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class ListSociosAvisoCobranza extends AppCompatActivity {
+public class ListaSociosRelacionesPublicas extends AppCompatActivity {
     private ImageView ivBack1; //Boton para volver a la vista principal
-    private ListView lvAfiliaciiones; //Mostrará la lista de afiliaciones del socio
+    private ListView lvAfiliaciones; //Mostrará la lista de afiliaciones del socio
     private ArrayList<String> codigos;
     private ProgressDialog progressDialog ;
+    private AdminSQLiteOpenHelper adm;
+    private String codMensaje;
     Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.afiliados_aviso_cobranza);
-        context = ListSociosAvisoCobranza.this;
+        setContentView(R.layout.activity_lista_socios_relaciones_publicas);
+        context = ListaSociosRelacionesPublicas.this;
+        adm = new AdminSQLiteOpenHelper(context,"dbReader",null,1);
         enlaces();
         cargarDatos();
         onclicks();
     }
-
+    private void obtenerUltimaNotificacion(String s) {
+        Cursor cursor = adm.getNotificaciones(s,Integer.toString(Constants.lista));
+        if (cursor.moveToFirst()){
+            codMensaje = cursor.getString(0);
+        }
+    }
     private void onclicks() {
 
         //Al presionar al textview regresa a la vista principal
@@ -60,10 +66,9 @@ public class ListSociosAvisoCobranza extends AppCompatActivity {
                 overridePendingTransition(R.anim.right_in,R.anim.right_out);
             }
         });
-        lvAfiliaciiones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvAfiliaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 progressDialog =  new ProgressDialog(context);
                 progressDialog.setMessage("Validando...");
                 progressDialog.setIndeterminate(true);
@@ -72,22 +77,21 @@ public class ListSociosAvisoCobranza extends AppCompatActivity {
                 consultar(codigos.get(position));
             }
         });
-
     }
 
     private void consultar(final String s) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_URL + "/get_aviso_de_cobro.php", new Response.Listener<String>() {
+        obtenerUltimaNotificacion(s);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SERVER_URL + "/get_relacionespublicas.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
-                    if (status.equals("200")){
-                        Intent intent = new Intent(context,Aviso_de_cobro.class);
-                        intent.putExtra("json",response);
-                        intent.putExtra("codigo",s);
+                    if (status.equals("ok")){
+                        Intent intent = new Intent(context,MantenimientoPreventivo.class);
+                        intent.putExtra("respuesta",response);
+                        intent.putExtra("user",s);
                         startActivity(intent);
                         overridePendingTransition(R.anim.left_in,R.anim.left_out);
                     }else{
@@ -109,7 +113,8 @@ public class ListSociosAvisoCobranza extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("id_soc", s);//Dato a enviar donde "codigoFijo" es la llave y codigoFijo es el valor
+                params.put("cod_notif",codMensaje);
+                params.put("codigo", s);//Dato a enviar donde "codigoFijo" es la llave y codigoFijo es el valor
 
                 return params;
             }
@@ -144,20 +149,19 @@ public class ListSociosAvisoCobranza extends AppCompatActivity {
 
 
         MyAdapterItemAfiliacion myAdapterItemAfiliacion = new MyAdapterItemAfiliacion(this, names,imgs);
-        lvAfiliaciiones.setAdapter(myAdapterItemAfiliacion);
+        lvAfiliaciones.setAdapter(myAdapterItemAfiliacion);
     }
     //Aquí se hace el cast a cada uno de los elementos de la vista
     private void enlaces() {
-        ivBack1 = findViewById(R.id.ivVolverafaviso);
-        lvAfiliaciiones = findViewById(R.id.listaAvisoCobranza);
-
+        ivBack1 = findViewById(R.id.ivVolverafrelaciones);
+        lvAfiliaciones = findViewById(R.id.listaRelacionesPublicas);
     }
 
     @Override
     //Cuando el usuario oprime hacia atras
     public void onBackPressed() {
         //super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(),Notificaciones.class));
+        startActivity(new Intent(context,Notificaciones.class));
         overridePendingTransition(R.anim.right_in,R.anim.right_out); //Le da la animación de desplazamiento lateral de la vista
     }
 }

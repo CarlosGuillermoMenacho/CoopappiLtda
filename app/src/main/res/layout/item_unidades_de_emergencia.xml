@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:id="@+id/itemaunidadesdeemregencia">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingEnd="5dp"
+        tools:ignore="RtlSymmetry,UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/ivunidad"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/casita_round"
+            android:contentDescription="@string/el_item_del_socio" />
+
+        <TextView
+            android:id="@+id/tvunidad"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#03033A"
+            android:layout_marginStart="20dp"
+            android:textSize="@dimen/text16sp"
+            android:text="@string/nombre" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#03033A"/>
+</LinearLayout>

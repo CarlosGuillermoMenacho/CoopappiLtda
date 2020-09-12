@@ -18,6 +18,8 @@ import org.json.JSONException;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private String respuesta;
+    private String response;
+    private String view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
         respuesta = getIntent().getStringExtra("respuesta");
+        response = getIntent().getStringExtra("response");
+        view = getIntent().getStringExtra("vista");
     }
 
     /**
@@ -66,7 +70,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        startActivity(new Intent(MapsActivity.this,MainActivity.class));
-        overridePendingTransition(R.anim.right_in,R.anim.right_out);
+        if (view.equals("pc")) {
+            startActivity(new Intent(MapsActivity.this, MainActivity.class));
+            overridePendingTransition(R.anim.right_in, R.anim.right_out);
+        }
+        if (view.equals("ue")){
+            Intent intent =new Intent(MapsActivity.this, UnidadesdeEmergencia.class);
+            intent.putExtra("respuesta",response);
+            startActivity(intent);
+            overridePendingTransition(R.anim.right_in, R.anim.right_out);
+        }
     }
 }

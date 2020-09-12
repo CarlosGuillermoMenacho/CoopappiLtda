@@ -1,7 +1,5 @@
 package com.coopappiltda.coopappiltda;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.coopappiltda.clases.Constants;
 import com.coopappiltda.clases.MyAdapterListView;
 
 import java.util.ArrayList;
@@ -35,10 +35,23 @@ public class Notificaciones extends AppCompatActivity {
         //Agregando las opciones al array para pasarlo a la ListView
         ArrayList<String> names = new ArrayList<>();
         ArrayList<Integer> images = new ArrayList<>();
-        names.add("Corte por deuda");
-        names.add("Aviso de cobranza");
-        names.add("Facturación");
 
+        names.add("Aviso de cobranza");
+        names.add("Mantenimiento Preventivo");
+        names.add("Corte por deuda");
+        names.add("Facturación");
+        names.add("Relaciones Públicas");
+        names.add("Servicio Técnico");
+        names.add("Nueva Conexión");
+        names.add("Asistencia Social Cooperativa");
+        names.add("Unidades de Emergencia");
+
+        images.add(R.drawable.gotits);
+        images.add(R.drawable.gotits);
+        images.add(R.drawable.gotits);
+        images.add(R.drawable.gotits);
+        images.add(R.drawable.gotits);
+        images.add(R.drawable.gotits);
         images.add(R.drawable.gotits);
         images.add(R.drawable.gotits);
         images.add(R.drawable.gotits);
@@ -66,16 +79,46 @@ public class Notificaciones extends AppCompatActivity {
 
     private void onclicItem(int position) {
         switch (position){
-            case 0:
+            case 2:
                 startActivity(new Intent(context,ListSociosCortePorDeuda.class));
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
                 break;
-            case 1:
+            case 0:
                 startActivity(new Intent(context,ListSociosAvisoCobranza.class));
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
                 break;
-            case 2:
+            case 3:
                 startActivity(new Intent(context,Facturacion.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 1:
+                Constants.lista=1;
+                startActivity(new Intent(context,ListSociosMantenimientoPrevent.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 4:
+                Constants.lista=4;
+                startActivity(new Intent(context,ListaSociosRelacionesPublicas.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 5:
+                Constants.lista=5;
+                startActivity(new Intent(context,ListaSociosServicioTecnico.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 6:
+                Constants.lista=6;
+                startActivity(new Intent(context,ListaSociosNuevaConexion.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 7:
+                Constants.lista=7;
+                startActivity(new Intent(context,ListaSociosAsistenciaSocioalCoop.class));
+                overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 8:
+                Constants.lista=8;
+                startActivity(new Intent(context,ListaSociosUnidades.class));
                 overridePendingTransition(R.anim.left_in,R.anim.left_out);
                 break;
         }

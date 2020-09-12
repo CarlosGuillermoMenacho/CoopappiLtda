@@ -37,7 +37,6 @@
                 android:textSize="@dimen/size24sp" />
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/tvcf"
             android:layout_width="match_parent"

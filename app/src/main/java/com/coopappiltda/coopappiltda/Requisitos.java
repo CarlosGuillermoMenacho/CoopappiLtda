@@ -1,13 +1,11 @@
 package com.coopappiltda.coopappiltda;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,8 +18,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.coopappiltda.clases.Constants;
 import com.coopappiltda.clases.Imagen;
-import com.coopappiltda.clases.MyAdapterItemAfiliacion;
-import com.coopappiltda.clases.MyAdapterListView;
 import com.coopappiltda.clases.MyAdapterListView2;
 import com.coopappiltda.clases.MySingleton;
 
@@ -61,7 +57,7 @@ private ListView lv2;
     }
     //Cuando se selecciona un item de la ListView
     private void itemSelected(int position) {
-        String urlRequest="";
+        String urlRequest;
         switch (position){
             case 0:
                 urlRequest = "/requisitos/requisito1.jpeg";
